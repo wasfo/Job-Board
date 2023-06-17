@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JOB BOARD</title>
+</head>
+<div class="info-box">
+  <body>
+
+  <h1>HELLO TO WORLD NUMBER ONE JOB BOARD PLATFORM</h1>
+
+  <% if user_signed_in? %>
+    <div> Welcome <%= current_user.email %> </div>
+    <div class="top-left">
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+    </div>
+  <% else %>
+    <div class="top-left">
+      <%= button_to "Sign in", new_user_session_path %>
+    </div>
+  <% end %>
+
+  </body>
+</div>
+</html>

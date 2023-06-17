@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  <%= button_to "Destroy this job post", @job_post, method: :delete, class: "btn btn-danger" %>
+</div>
+
+<div class="frame">
+  <div class="info-box">
+
+
+    <%= render @job_post %>
+
+
+  </div>
+  <%= link_to "Edit", edit_job_post_path(@job_post), class: "btn btn-dark" %> |
+  <%= link_to "Back", job_posts_path, class: "btn btn-dark" %>
+</div>
+

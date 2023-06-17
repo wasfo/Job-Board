@@ -1,0 +1,23 @@
+<div class = "info-box">
+<p style="color: green"><%= notice %></p>
+<% if current_user.role == "user" %>
+  <div class="centralize">
+    <h1>My Job applications</h1>
+<% else %>
+  <div class="centralize">
+    <h1>Job applications</h1>
+  </div>
+<% end %>
+
+</div>
+
+  <%= link_to "New job application", new_job_application_path , class: "btn btn-primary" %>
+  <div id="job_applications">
+    <% @job_applications.each do |job_application| %>
+      <%= render job_application %>
+      <p>
+        <%= link_to "Show this job application", job_application %>
+      </p>
+    <% end %>
+  </div>
+</div>
