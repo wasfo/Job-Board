@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    render
+    @job_posts = JobPost.all
   end
 end

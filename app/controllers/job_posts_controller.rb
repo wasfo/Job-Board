@@ -1,12 +1,17 @@
 class JobPostsController < ApplicationController
   load_and_authorize_resource
   before_action :set_job_post, only: %i[ show edit update destroy ]
-
+  skip_before_action :verify_authenticity_token
   # GET /job_posts or /job_posts.json
   def index
     @job_posts = JobPost.all
+
   end
 
+  def search
+    key = "%#{params[:search]}%"
+    @job_posts = JobPost.where("name LIKE ?", key)
+  end
   # GET /job_posts/1 or /job_posts/1.json
   def show
   end

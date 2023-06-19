@@ -1,12 +1,28 @@
-<div id="<%= dom_id job_post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= job_post.title %>
-  </p>
+<div class="col-md-3">
+  <div class="card" style="width: 18rem;">
+    <div
+      id="<%= dom_id job_post %>">
+    </div>
+    <% if user_signed_in? %>
+      <%= button_to "Apply!", new_job_application_path, method: :get,
+                    params: { var1: job_post.id, var2: job_post.title },
+                    class: "btn btn-danger" %>
+    <% else %>
+      <%= button_to "Apply!", new_user_password_path, class: "btn btn-danger" %>
+    <% end %>
+    <%= image_tag 'Blue_computer_icon.svg.png', alt: 'Image' %>
 
-  <p>
-    <strong>Description:</strong>
-    <%= job_post.description %>
-  </p>
+    <div class="card-body">
+      <h5 class="card-title"> <%= job_post.title %></h5>
+      <p class="card-text"> Company:  <%= job_post.company %></p>
+
+      <%= link_to "Show more", job_post, class: "btn btn-primary" %>
+
+    </div>
+  </div>
+
+
 
 </div>
+
+

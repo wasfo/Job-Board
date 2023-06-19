@@ -1,9 +1,27 @@
 class JobApplicationsController < ApplicationController
   load_and_authorize_resource
   before_action :set_job_application, only: %i[show edit update destroy]
+  skip_before_action :verify_authenticity_token
   # GET /job_applications or /job_applications.json
   def index
-    @job_applications = current_user.job_applications.all
+    if admin?
+      @job_applications = JobApplication.all
+
+    else
+      @job_applications = current_user.job_applications.all
+    end
+    @job_posts_titles = @job_applications.map { |application| application.job_post.title }
+  end
+
+  # POST /mark_as_seen
+  #
+  def mark_as_seen
+
+    job_application_id = params[:job_application_id]
+    ja = JobApplication.find(job_application_id)
+    ja.seen = true
+    ja.save
+
   end
 
   # GET /job_applications/1 or /job_applications/1.json

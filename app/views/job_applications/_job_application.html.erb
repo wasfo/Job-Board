@@ -1,7 +1,67 @@
-<div id="<%= dom_id job_application %>">
-  <p>
-    <strong>Seen:</strong>
-    <%= job_application.seen %>
-  </p>
+<div class="col-md-3">
+  <div class="card text-bg-success mb-5" style="max-width: 18rem;">
+    <div id="<%= dom_id job_application %>">
 
+      <div class="card-header">
+        <div class="spinner-grow text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"> Job Post Id
+
+          <%= job_application.job_post_id %>
+
+        </h5>
+
+
+        <p class="card-text">
+        <ul class="list-group">
+
+          <li class="list-group-item list-group-item-action"> name: <%= job_application.name %></li>
+          <li class="list-group-item">email: <%= job_application.email %></li>
+          <li class="list-group-item">date: <%= job_application.created_at %></li>
+          <li class="list-group-item ">phone: <%= job_application.phone %></li>
+
+        </ul>
+
+        <strong> click see to notify the user:</strong>
+        <% unless admin? %>
+          <h4> has been seen? <%= job_application.seen %> </h4>
+        <% end %>
+        <i class="fas fa-times">
+
+            <%= form_tag(mark_as_seen_path, method: :post) do %>
+            <%= hidden_field_tag :job_application_id, job_application.id %>
+            <%= submit_tag 'Mark as Seen', class: "btn btn-danger" %>
+          <% end %>
+
+        </i>
+
+        <p>
+          <%= link_to "Show", job_application, class: "btn btn-dark" %>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
