@@ -5,15 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   before_create :set_default_role
-
+  has_many :job_applications
   def set_default_role
     self.role = "user"
   end
 
-  def admin?
-    self.role == "admin"
-  end
-
   ROLES = %w{admin user}
-  has_many :job_applications
+
 end
